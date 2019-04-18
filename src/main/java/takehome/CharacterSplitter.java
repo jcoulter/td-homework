@@ -64,7 +64,7 @@ public class CharacterSplitter {
     };
 
     //Completely ignore the hard problem.
-    //All known error cases could be a key in this map pointing to the correct number
+    //All known error cases could be a key in this map pointing to the correct number until we get to story #4
     private static final HashMap<String[], String> MAPPINGS = new HashMap<String[], String>() {{
         put(ZERO, "0");
         put(ONE, "1");
