@@ -5,68 +5,10 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertArrayEquals;
+import static takehome.CharacterSplitter.*;
 
 public class CharacterSplitterTest {
 
-    public static final String[] ZERO = new String[]{
-            " _ ",
-            "| |",
-            "|_|"
-    };
-
-    public static final String[] ONE = new String[]{
-            "   ",
-            "  |",
-            "  |"
-    };
-
-    public static final String[] TWO = new String[]{
-            " _ ",
-            " _|",
-            "|_ "
-    };
-
-    public static final String[] THREE = new String[]{
-            " _ ",
-            " _|",
-            " _|"
-    };
-
-    public static final String[] FOUR = new String[]{
-            "   ",
-            "|_|",
-            "  |"
-    };
-
-    public static final String[] FIVE = new String[]{
-            " _ ",
-            "|_ ",
-            " _|"
-    };
-
-    public static final String[] SIX = new String[]{
-            " _ ",
-            "|_ ",
-            "|_|"
-    };
-
-    public static final String[] SEVEN = new String[]{
-            " _ ",
-            "  |",
-            "  |"
-    };
-
-    public static final String[] EIGHT = new String[]{
-            " _ ",
-            "|_|",
-            "|_|"
-    };
-
-    public static final String[] NINE = new String[]{
-            " _ ",
-            "|_|",
-            " _|"
-    };
     private CharacterSplitter characterSplitter;
 
     @Before
@@ -74,8 +16,10 @@ public class CharacterSplitterTest {
         characterSplitter = new CharacterSplitter();
     }
 
+    //todo: all of these tests have too many assertions.
+    // It will be difficult to know why it failed if something goes wrong.
     @Test
-    public void test_split_characters() {
+    public void test_split_characters_data() {
         // assume file reader drops every 4th line and invokes this with each meaningful 3.
         String line1 = " _     _  _     _  _  _  _  _ ";
         String line2 = "| |  | _| _||_||_ |_   ||_||_|";
@@ -83,7 +27,7 @@ public class CharacterSplitterTest {
 
         String[] entry = {line1, line2, line3};
 
-        String[][] split = characterSplitter.splitCharacters(entry);
+        String[][] split = characterSplitter.splitCharacterData(entry);
         assertArrayEquals(ZERO, split[0]);
         assertArrayEquals(ONE, split[1]);
         assertArrayEquals(TWO, split[2]);
@@ -106,6 +50,23 @@ public class CharacterSplitterTest {
         assertEquals("345", peice[1]);
         assertEquals("678", peice[2]);
         assertEquals("9  ", peice[3]);
+    }
+
+    @Test
+    public void test_character_data_to_digits() {
+        String[][] characters = new String[][]{ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE};
+
+        String accountNumber = characterSplitter.toNumericString(characters);
+        assertEquals("0123456789", accountNumber);
+    }
+
+    @Test
+    public void test_illegible_character_data_replaced_by_question_mark() {
+        String[] invalidCharacter = {"gar", "bage", "value"};
+        String[][] characters = new String[][]{NINE, EIGHT, invalidCharacter, SIX, FIVE, invalidCharacter, THREE, TWO, invalidCharacter, ZERO};
+
+        String accountNumber = characterSplitter.toNumericString(characters);
+        assertEquals("98?65?32?0", accountNumber);
     }
 
 //### use case 1

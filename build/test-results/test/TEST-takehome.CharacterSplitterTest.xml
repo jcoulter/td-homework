@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="takehome.CharacterSplitterTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-04-18T13:44:00" hostname="Syber" time="0.006">
+<testsuite name="takehome.CharacterSplitterTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2019-04-18T14:09:49" hostname="Syber" time="0.007">
   <properties/>
-  <testcase name="test_split_pieces" classname="takehome.CharacterSplitterTest" time="0.003"/>
-  <testcase name="test_split_characters" classname="takehome.CharacterSplitterTest" time="0.003"/>
+  <testcase name="test_illegible_character_data_replaced_by_question_mark" classname="takehome.CharacterSplitterTest" time="0.003"/>
+  <testcase name="test_split_pieces" classname="takehome.CharacterSplitterTest" time="0.001"/>
+  <testcase name="test_split_characters_data" classname="takehome.CharacterSplitterTest" time="0.003"/>
+  <testcase name="test_character_data_to_digits" classname="takehome.CharacterSplitterTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

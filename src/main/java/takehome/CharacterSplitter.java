@@ -1,12 +1,89 @@
 package takehome;
 
-public class CharacterSplitter {
+import java.util.HashMap;
 
-    // 3 lines and 3 chars per digit means that this constant is overused.
+public class CharacterSplitter {
+    public static final String[] ZERO = new String[]{
+            " _ ",
+            "| |",
+            "|_|"
+    };
+
+    public static final String[] ONE = new String[]{
+            "   ",
+            "  |",
+            "  |"
+    };
+
+    public static final String[] TWO = new String[]{
+            " _ ",
+            " _|",
+            "|_ "
+    };
+
+    public static final String[] THREE = new String[]{
+            " _ ",
+            " _|",
+            " _|"
+    };
+
+    public static final String[] FOUR = new String[]{
+            "   ",
+            "|_|",
+            "  |"
+    };
+
+    public static final String[] FIVE = new String[]{
+            " _ ",
+            "|_ ",
+            " _|"
+    };
+
+    public static final String[] SIX = new String[]{
+            " _ ",
+            "|_ ",
+            "|_|"
+    };
+
+    public static final String[] SEVEN = new String[]{
+            " _ ",
+            "  |",
+            "  |"
+    };
+
+    public static final String[] EIGHT = new String[]{
+            " _ ",
+            "|_|",
+            "|_|"
+    };
+
+    public static final String[] NINE = new String[]{
+            " _ ",
+            "|_|",
+            " _|"
+    };
+
+    //Completely ignore the hard problem.
+    //All known error cases could be a key in this map pointing to the correct number
+    private static final HashMap<String[], String> MAPPINGS = new HashMap<String[], String>() {{
+        put(ZERO, "0");
+        put(ONE, "1");
+        put(TWO, "2");
+        put(THREE, "3");
+        put(FOUR, "4");
+        put(FIVE, "5");
+        put(SIX, "6");
+        put(SEVEN, "7");
+        put(EIGHT, "8");
+        put(NINE, "9");
+    }};
+
+
+    // todo: 3 lines and 3 chars per digit means that this constant is overused.
     // Those coincidental concerns should not be represented by the same value.
     public static final int EXPECTED_LINES = 3;
 
-    public String[][] splitCharacters(String[] entry) {
+    public String[][] splitCharacterData(String[] entry) {
         // todo test cases enforcing called with exactly 3 lines
         String[][] splitRows = new String[EXPECTED_LINES][];
 
@@ -36,5 +113,13 @@ public class CharacterSplitter {
             result[i] = String.format("%-3s", pieces[i]);
         }
         return result;
+    }
+
+    public String toNumericString(String[][] characters) {
+        StringBuilder result = new StringBuilder();
+        for (String[] character : characters) {
+            result.append(MAPPINGS.getOrDefault(character, "?"));
+        }
+        return result.toString();
     }
 }
