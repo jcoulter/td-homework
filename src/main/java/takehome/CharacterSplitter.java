@@ -79,12 +79,12 @@ public class CharacterSplitter {
     }};
 
 
-    // todo: 3 lines and 3 chars per digit means that this constant is overused.
-    // Those coincidental concerns should not be represented by the same value.
     public static final int EXPECTED_LINES = 3;
+    public static final int CHARACTER_LENGTH = 3;
 
     public String[][] splitCharacterData(String[] entry) {
         // todo test cases enforcing called with exactly 3 lines
+        // todo test cases envorcing all strings in entry are the same length (right pad to max?)
         String[][] splitRows = new String[EXPECTED_LINES][];
 
         //every time I write this style of for loop I wish I was writing in a more functional language like ruby
@@ -110,7 +110,7 @@ public class CharacterSplitter {
         String[] result = new String[pieces.length];
 
         for (int i = 0; i < pieces.length; i++) {
-            result[i] = String.format("%-3s", pieces[i]);
+            result[i] = String.format("%-" + CHARACTER_LENGTH + "s", pieces[i]);
         }
         return result;
     }

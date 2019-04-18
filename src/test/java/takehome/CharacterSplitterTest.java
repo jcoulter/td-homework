@@ -42,14 +42,13 @@ public class CharacterSplitterTest {
 
     @Test
     public void test_split_pieces() {
-
         String line = "0123456789";
 
-        String[] peice = characterSplitter.splitPieces(line);
-        assertEquals("012", peice[0]);
-        assertEquals("345", peice[1]);
-        assertEquals("678", peice[2]);
-        assertEquals("9  ", peice[3]);
+        String[] pieces = characterSplitter.splitPieces(line);
+        assertEquals("012", pieces[0]);
+        assertEquals("345", pieces[1]);
+        assertEquals("678", pieces[2]);
+        assertEquals("9  ", pieces[3]);
     }
 
     @Test

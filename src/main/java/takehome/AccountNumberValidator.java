@@ -25,7 +25,8 @@ public class AccountNumberValidator {
     int calculateChecksum(int[] ints) {
         int product = 0;
         for (int i = 0; i < ints.length; i++) {
-            product += (i+1) * ints[ints.length - (i+1)];
+            int multiplier = i + 1;
+            product += multiplier * ints[ints.length - multiplier];
         }
         return product % 11;
     }
